@@ -1,0 +1,23 @@
+http:
+  address: "0.0.0.0:8066"
+  access_logs: false
+  middleware:
+    - headers
+pool:
+  num_workers: 32
+  max_jobs: 1000
+reload:
+  interval: 1s
+  patterns: [ ".php" ]
+  services:
+    http:
+      recursive: true
+      ignore: [ "vendor" ]
+      patterns: [ ".php" ]
+      dirs: [ "." ]
+environment:
+  - "DEBUG=1"
+logs:
+  level: error
+server:
+  command: "php rr-worker.php"

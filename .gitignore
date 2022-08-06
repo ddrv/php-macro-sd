@@ -1,0 +1,5 @@
+vendor/
+fs/
+var/
+config/config.local.php
+rr.yaml
