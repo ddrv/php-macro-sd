@@ -29,7 +29,7 @@ $appDatabase = implode(DIRECTORY_SEPARATOR, [$root, 'var', 'visibility.sqlite'])
 if (!is_dir($root . DIRECTORY_SEPARATOR . 'var')) {
     mkdir($root . DIRECTORY_SEPARATOR . 'var');
 }
-if (!file_exists($appDatabase)) {
+if (!file_exists($appDatabase) && file_exists($emptyDatabase)) {
     copy($emptyDatabase, $appDatabase);
 }
 
