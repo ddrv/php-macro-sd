@@ -10,6 +10,7 @@ use App\Service\Database\Database;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemAdapter;
 use League\Flysystem\FilesystemOperator;
+use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
 use League\Flysystem\Local\LocalFilesystemAdapter;
 use League\Flysystem\WebDAV\WebDAVAdapter;
 use Sabre\DAV\Client;
@@ -67,6 +68,8 @@ final class StorageManager
                     $path = $this->root . DIRECTORY_SEPARATOR . ltrim($path, '/');
                 }
                 return new LocalFilesystemAdapter(rtrim($path, '/'));
+            case 'memory':
+                return new InMemoryFilesystemAdapter();
             case 'webdav':
                 $host = $scheme . '://' . $config['host'];
                 if (array_key_exists('port', $config)) {
