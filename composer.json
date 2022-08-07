@@ -2,6 +2,15 @@
     "name": "ddrv/macro-sd",
     "description": "proxy storage",
     "type": "project",
+    "keywords": ["storage", "files"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ivan Dudarev",
+            "email": "ivan@ddrv.ru",
+            "homepage": "https://ddrv.ru"
+        }
+    ],
     "require": {
         "php": ">=8.0",
         "ext-pdo": "*",
