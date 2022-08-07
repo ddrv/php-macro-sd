@@ -23,5 +23,8 @@
     },
     "replace": {
         "symfony/polyfill-php80": "*"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7"
     }
 }
