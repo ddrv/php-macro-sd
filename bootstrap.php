@@ -8,6 +8,7 @@ use App\Web\Handler\Get;
 use App\Web\Middleware\AttachStorageMiddleware;
 use App\Web\Middleware\AuthMiddleware;
 use App\Web\Middleware\AuthRequiredMiddleware;
+use App\Web\Middleware\RewindResponseBodyMiddleware;
 use Ddrv\Container\Container;
 use Ddrv\ServerRequestWizard\ServerRequestWizard;
 use Nyholm\Psr7\Factory\Psr17Factory;
@@ -67,6 +68,10 @@ $container->service(AttachStorageMiddleware::class, function (ContainerInterface
     return new AttachStorageMiddleware(
         $container->get(StorageManager::class)
     );
+});
+
+$container->service(RewindResponseBodyMiddleware::class, function (ContainerInterface $container) {
+    return new RewindResponseBodyMiddleware();
 });
 
 $container->service(Database::class, function (ContainerInterface $container) {

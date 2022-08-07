@@ -12,6 +12,7 @@ use App\Web\Handler\MiddlewareHandler;
 use App\Web\Middleware\AttachStorageMiddleware;
 use App\Web\Middleware\AuthMiddleware;
 use App\Web\Middleware\AuthRequiredMiddleware;
+use App\Web\Middleware\RewindResponseBodyMiddleware;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -42,7 +43,10 @@ final class App
                 case 'HEAD':
                 case 'GET':
                     $handlerClass = Get::class;
-                    $middlewareClasses = [AttachStorageMiddleware::class];
+                    $middlewareClasses = [
+                        AttachStorageMiddleware::class,
+                        RewindResponseBodyMiddleware::class,
+                    ];
                     break;
                 case 'POST':
                     $handlerClass = Api::class;
@@ -50,6 +54,7 @@ final class App
                         AttachStorageMiddleware::class,
                         AuthRequiredMiddleware::class,
                         AuthMiddleware::class,
+                        RewindResponseBodyMiddleware::class,
                     ];
                     break;
                 default:
