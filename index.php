@@ -3,6 +3,7 @@
 /** @var ContainerInterface $container */
 
 use App\App;
+use Ddrv\ServerRequestWizard\FileReader;
 use Ddrv\ServerRequestWizard\ServerRequestWizard;
 use Psr\Container\ContainerInterface;
 
@@ -10,7 +11,7 @@ $container = require __DIR__ . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
 /** @var ServerRequestWizard $requestWizard */
 $requestWizard = $container->get(ServerRequestWizard::class);
-$request = $requestWizard->create($_GET, $_POST, $_SERVER, $_COOKIE, $_FILES);
+$request = $requestWizard->create($_GET, $_POST, $_SERVER, $_COOKIE, $_FILES, new FileReader('php://input'));
 
 /** @var App $app */
 $app = $container->get(App::class);
